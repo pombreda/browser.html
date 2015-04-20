@@ -1,0 +1,109 @@
+.locationbar {
+  -moz-window-dragging: no-drag;
+  align-items: center;
+  flex-basis: 460px;
+  border-radius: 3px;
+  line-height: 30px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+.locationbar > * {
+  z-index: 100;
+}
+
+.urlinput,
+.pagesummary {
+  line-height: 30px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.pagesummary {
+  display: block;
+  padding: 0 30px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.navbar:not(.urledit) .urlinput,
+.navbar.urledit .pagesummary {
+  /* We don't use display:none. We want the input
+   * to be focussable */
+  max-width: 0;
+  padding: 0;
+}
+
+.urlinput {
+  border-radius: 0;
+}
+
+.backbutton,
+.reloadbutton,
+.stopbutton {
+  display: block;
+  min-width: 30px;
+  height: 30px;
+  font-family: FontAwesome;
+  text-align: center;
+  font-size: 17px;
+  vertical-align: middle;
+}
+
+.backbutton::after,
+.reloadbutton::after,
+.stopbutton::after {
+  pointer-events: none;
+  display: block;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.backbutton::after {
+  transform: translateY(var(--hwd-pixel)); /* fixme. fontawesome alignment issue*/
+}
+
+.backbutton::after {   content: "\f053" }
+.reloadbutton::after { content: "\f01e" }
+.stopbutton::after {   content: "\f00d" }
+
+.navbar.loading .reloadbutton,
+.navbar:not(.loading) .stopbutton {
+  display: none;
+}
+
+.navbar:not(.cangoback) .backbutton,
+.navbar:not(.canreload) .reloadbutton {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.pagesummary > span {
+  display: inline;
+}
+
+.pagetitle {
+  padding: 5px;
+}
+
+.pageurlsummary {
+  font-weight: bold;
+}
+
+.navbar.ssl .pageurlsummary::before,
+.navbar.privileged .pageurlsummary::before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.navbar.ssl .pageurlsummary::before {
+  content: "\f023";
+}
+
+.navbar.privileged .pageurlsummary::before {
+  content: "\f013";
+}

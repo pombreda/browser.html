@@ -1,0 +1,110 @@
+:root {
+  --hwd-pixel: 1px;
+  --bg: white;
+}
+
+@media (min-resolution: 2dppx) {
+  :root {
+    --hwd-pixel: 0.5px;
+  }
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fontawesome-webfont.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  -moz-appearance: none;
+  background-color: transparent;
+  background-image: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border-width: 0;
+  font-family: "Helvetica", sans-serif;
+  font-size: 12px;
+  /* image-rendering: -moz-crisp-edges; */
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+[hidden] {
+  display: none;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+}
+
+/* Prevents scrollbars to show up with out-of-window elements */
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Let's use flexbox everywhere */
+
+main {
+  height: 100vh;
+  width: 100vw;
+  overflow: -moz-hidden-unscrollable;
+  flex-flow: column;
+  background-color: var(--bg);
+  color: black;
+  /* scroll-behavior: smooth; */
+  display: flex;
+  scroll-snap-type: mandatory;
+  scroll-snap-destination: 0 0;
+  position: relative;
+}
+
+main * {
+  display: flex;
+}
+
+main.scrollable {
+  overflow-y: scroll;
+}
+
+tab-iframe {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+iframe {
+  display: flex;
+  flex-grow: 1;
+}
+
+.iframes {
+  flex-grow: 1;
+  scroll-snap-coordinate: 0 0;
+}
+
+
+.iframes-frame {
+  flex-grow: 1;
+}
+
+.webview:not([hidden]).contentoverflows {
+  min-height: 100vh;
+}
+
+/*
+This is a workaround for Bug #266 that prevents capturing
+screenshots if iframe or it's ancesstors have `display: none`.
+Until that's fixed on platform we just hide such elements with
+negative index and absolute position.
+*/
+.iframes[hidden],
+.webview[hidden]:not(.rendered) {
+  z-index: -1;
+  display: initial;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
